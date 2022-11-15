@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+</head>
+<body>
+    <div class="top-card-1 top-card">
+        <p class="shad-1"></p>
+        <div class="poster">
+            <img style="width:95%;border-radius: 20px;filter: drop-shadow(20px 15px 6px rgba(0,0,0,.6));" src="https://i.pinimg.com/originals/64/01/38/6401386e0971aeab7d9a0f295053fc73.png">
+        </div>
+        <div>
+            <h1 class="appn" style="width: 100%;text-align: center;text-transform: uppercase;">
+                <i class="fi fi-rr-music-alt"></i> &nbsp;Tuned<span>.</span><span>.</span><span>.</span>
+            </h1>
+            <p style="text-align: center; margin-top: 7px; font-size: 11px;">LOOP it or LEAVE it</p>
+        </div>
+    </div>
+
+    <div class="top-card-2 top-card">
+        <p class="shad-1"></p>
+        <div class="header">
+            <div class="back">
+                <i class="fi fi-rr-angle-left"></i>
+            </div>
+            <div class="h-title">
+                <p class="title-t">
+                    <span>Now Playing</span>
+                    <i class="fi fi-rr-volume"></i>
+                </p>
+                <p class=""></p>
+            </div>
+            <div class="list">
+                <i class="fi fi-rr-list"></i>
+            </div>
+        </div>
+        <div class="poster">
+            <img style="width:78%;border-radius: 20px;" src="https://assetscdn1.paytm.com/images/cinema/daman-705x750-6dcf34c0-3e82-11ed-89db-03a07b1eeb49.jpg" />
+        </div>
+        <div class="title">
+            <span class="song">
+                <span class="song-name" id="songname">
+                    Nichhatia Mana
+                </span>
+                <marquee scrollamount="4" class="credits" id="songinf">Red Dead Redemption 2: The Killa - Daniel Lanois</marquee>
+            
+            </span>
+            <i class="fi fi-rr-heart"></i>
+        </div>
+        <div class="progress">
+            <div class="bar-holder">
+                 <div class="gray-bar">
+                     <span class="start-time">
+                         00:00
+                     </span>
+                     <span class="end-time" id="endtime">
+                         04:34
+                     </span>
+                 </div>
+                 <div class="progress-bar" id="progress">
+                     <div class="dot-holder">
+                         <div class="dot"></div>
+                     </div>
+                 </div>
+            </div>
+         </div>
+        <div class="controls">
+            <audio id="track-on-wheel" preload="metadata" muted="true" src="" controls="">
+            </audio>
+            <div class="shuffle">
+                <i class="fi fi-rr-arrows-cross"></i>
+            </div>
+            <div class="prev" id="prev">
+                <i class="fi fi-rr-rewind"></i>
+            </div>
+            <div class="play-pause">
+                <i id="play-pause-btn" class="fi fi-rr-play"></i>
+            </div>
+            <div class="next" id="next">
+                <i class="fi fi-rr-rewind"></i>
+            </div>
+            <div class="repeat">
+                <i class="fi fi-rr-arrows-repeat"></i>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        min-height: 100vh;
+        background-color: #171d26;
+        gap: 50px;
+    }
+    .top-card-1 {
+        background-color: #13171D;
+        width: 300px;
+        height: 630px;
+        border-radius: 50px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 49px 41px -19px rgb(0 0 0 / 43%);
+        justify-content: center !important;
+        gap: 20px;
+    }
+    .top-card-2 {
+        background-color: #0b0f1a;
+        width: 300px;
+        height: 630px;
+        border-radius: 50px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 49px 41px -19px rgb(0 0 0 / 43%);
+    }
+    .top-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        color: rgba(255,255,255,.75);
+    }
+    .top-card::after {
+        content: "";
+        position: absolute;
+        width: 0px;
+        height: 0px;
+        bottom: -32px;
+        left: 100px;
+        background: none;
+        box-shadow: 36px -3px 133px 50px rgb(125 249 255 / 59%);
+        z-index: 8;
+    }
+    .shad-1 {
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 240px;
+        right: 40px;
+        box-shadow: 84px -15px 220px 46px rgb(125 249 255 / 38%);
+    }
+    .shad-2{
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 20px;
+        left: 40px;
+        box-shadow: 84px -15px 220px 46px rgb(125 249 255 / 38%);
+    }
+    .header {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 34px 10px;
+    }
+    .title-t{
+        font-size: 12px;
+        display: flex;
+        gap:10px;
+        align-items: center;
+        font-weight: 400;
+    }
+    i.fi.fi-rr-volume {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .poster{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .title,.controls,.progress{
+        width: 100%;
+        min-height: 90px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    span.song {
+        display: flex;
+        flex-direction: column;
+    }
+    span.song-name {
+        font-size: 18px;
+    }
+    .credits {
+        font-size: 9px;
+        font-weight: 100;
+    }
+    i.fi.fi-rr-heart {
+        font-size: 20px;
+    }
+    .progress{
+        padding-left: 10%;
+        padding-right: 10%;
+        min-height: 40px;
+    }
+    .bar-holder {
+        width: 100%;
+        position: relative;
+        height: 2px;
+    }
+    .gray-bar {
+        width: 100%;
+        height: 2px;
+        background: rgba(255,255,255,.1);
+        position: relative;
+    }
+    .progress-bar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: cyan;
+        z-index: 2;
+        height: 2px;
+    }
+    .title{
+        padding-left: 10%;
+        padding-right: 10%;
+        justify-content: space-between;
+    }
+    .dot-holder{
+        position: relative;
+        width: 100%;
+        height: 2px;
+    }
+    .dot {
+        position: absolute;
+        right: 0;
+        top: -3px;
+        width: 8px;
+        height: 8px;
+        background: black;
+        border-radius: 50%;
+        border: 2px solid cyan;
+    }
+    .controls{
+        padding-left: 10%;
+        padding-right: 10%;
+
+    }
+    .prev,.next{
+        color: #fff;
+    }
+    .next{
+        transform: rotate(180deg);
+        height: 17px;
+    }
+    .play-pause {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: black;
+        border-radius: 50%;
+    }
+    i.fi.fi-rr-play,i.fi.fi-rr-pause {
+        height: 20px;
+        cursor: pointer;
+    }
+    .shuffle,.repeat {
+        color: rgba(255,255,255,.5);
+        font-size: 10px;
+    }
+    .start-time, .end-time {
+        position: absolute;
+        top: 9px;
+        font-size: 10px;
+    }
+    .start-time{
+        left:0;
+        text-align:left;
+    }
+    .end-time{
+        right: 0;
+        text-align: right;
+    }
+    #track-on-wheel{
+        display: none;
+    }
+    .shuffle,.prev,.next,.repeat,.play-pause,.progress-bar,.dot,.dot-holder,.bar-holder{
+        cursor: pointer;
+    }
+    .appn span{
+        color: rgba(0,255,255,.7);
+    }
+    .appn i{
+        color: darksalmon;
+    }
+
+
+    .next,.prev {
+        font-size: 17px;
+    }
+    i.fi.fi-rr-play, i.fi.fi-rr-pause{
+        font-size: 17px;
+    }
+    i.fi.fi-rr-angle-left,i.fi.fi-rr-list{
+        font-size: 17px;
+    }
+
+    
+    @media screen and (max-width:600px) {
+        body{
+            flex-direction: column;
+            min-height: 100% !important;
+        }
+        .top-card-1,.top-card-2{
+            width:100%;
+            min-height: 100vh;
+        }
+        span.song {
+            align-items: flex-start;
+        }
+    }
+
+
+
+    /*Slide to Unlock*/
+
+    .pullee {
+    width: 10rem;
+    appearance: none;
+    }
+    .pullee:active::-webkit-slider-thumb {
+    appearance: none;
+    transform: scale(1.1);
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
+    }
+    .pullee:active::-moz-range-thumb {
+    border: 0;
+    transform: scale(1.1);
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
+    }
+    .pullee:active::-ms-thumb {
+    transform: scale(1.1);
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
+    }
+    .pullee:focus {
+    outline: none;
+    }
+    .pullee::-webkit-slider-thumb {
+    appearance: none;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #5990dd;
+    transform-origin: 50% 50%;
+    transform: scale(1);
+    transition: transform ease-out 100ms;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    }
+    .pullee::-moz-range-thumb {
+    border: 0;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #5990dd;
+    transform-origin: 50% 50%;
+    transform: scale(1);
+    transition: transform ease-out 100ms;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    }
+    .pullee::-ms-thumb {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #5990dd;
+    transform-origin: 50% 50%;
+    transform: scale(1);
+    transition: transform ease-out 100ms;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    }
+    .pullee::-webkit-slider-runnable-track {
+    height: 1rem;
+    padding: 0.25rem;
+    box-sizing: content-box;
+    border-radius: 1rem;
+    background-color: #dde0e3;
+    }
+    .pullee::-moz-range-track {
+    height: 1rem;
+    padding: 0.25rem;
+    box-sizing: content-box;
+    border-radius: 1rem;
+    background-color: #dde0e3;
+    }
+    .pullee::-moz-focus-outer {
+    border: 0;
+    }
+    .pullee::-ms-track {
+    border: 0;
+    height: 1rem;
+    padding: 0.25rem;
+    box-sizing: content-box;
+    border-radius: 1rem;
+    background-color: #dde0e3;
+    color: transparent;
+    }
+    .pullee::-ms-fill-lower, .pullee::-ms-fill-upper {
+    background-color: transparent;
+    }
+    .pullee::-ms-tooltip {
+    display: none;
+    }
+
+    html {
+    font-size: 32px;
+    text-align: center;
+    }
+
+    h1 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.25px;
+    }
+
+    .center-xy {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    }
+    
+</style>
+
+<script>
+    const audioPlayPause = document.getElementById("play-pause-btn");
+    const audiotrack = document.getElementById("track-on-wheel");
+    const progress = document.getElementById("progress");
+    const endTime = document.getElementById("endtime");
+    const songName = document.getElementById("songname");
+    const credit = document.getElementById("songinf");
+    const nextBtn = document.getElementById("next");
+    const prevBtn = document.getElementById("prev");
+    let trackId = 0;
+    let paused = true;
+
+    const audioBase = "https://smrutikant.github.io/music-player/tracks/";
+
+    var trackList = [
+                        {
+                            "name": "The many miles we walk", 
+                            "credit":"Red Dead Redemption 2: The Killa - Daniel Lanois" //The credit Notes
+                        },
+                        {
+                            "name":"Some say love",
+                            "credit":"Phosphorescent - Song For Zula : Phear Creative"
+                        },
+                        {
+                            "name":"On the train ride home",
+                            "credit":"The Paper Kites - On The Train Ride Home (Official Music)"
+                        },
+                        {
+                            "name":"All we know",
+                            "credit":"The Chainsmokers - All We Know (Audio) : Phoebe Ryan"
+                        }
+                    ];
+
+
+    
+
+    audioPlayPause.addEventListener("click", () => {
+        paused = audioPlayPause.classList.contains("fi-rr-play");
+        if (paused) {
+            playTrack();
+        } else {
+            pauseTrack();
+        }
+    });
+
+    const playTrack = () => {
+        audiotrack.load();
+        audioPlayPause.classList.remove("fi-rr-play");
+        audioPlayPause.classList.add("fi-rr-pause");
+        var minutes = Math.floor(audiotrack.duration / 60);
+        var seconds = audiotrack.duration - minutes * 60;
+        endTime.innerHTML = pad(minutes, 2) + ":" + pad(Math.round(seconds), 2);
+        audiotrack.play();
+        audiotrack.muted = false;
+    };
+
+    const pauseTrack = () => {
+        audioPlayPause.classList.remove("fi-rr-pause");
+        audioPlayPause.classList.add("fi-rr-play");
+        audiotrack.pause();
+    };
+
+    const loadTrack = (trackId) =>{
+        audiotrack.src = audioBase + trackList[trackId]["name"]+".mp3";
+        songName.innerHTML = trackList[trackId]["name"].substring(0,13) + "...";
+        credit.innerHTML = trackList[trackId]["credit"];
+        playTrack();
+    }
+
+    const fillProgressBar = () => {
+        var currentTime = audiotrack.currentTime;
+        const audioDuration = audiotrack.duration;
+        progress.style.width = `${(currentTime / audioDuration) * 100}%`;
+
+        var minutes = Math.floor(audiotrack.currentTime / 60);
+        var seconds = audiotrack.currentTime - minutes * 60;
+        if (Math.round(seconds) == 60) {
+            seconds = "00";
+            minutes = ++minutes;
+        }
+        //curTime.innerHTML = pad(minutes, 2) + ":" + pad(Math.round(seconds), 2);
+    };
+
+
+    const playNext = () => {
+        if(trackId < trackList.length - 1){
+            ++trackId;
+        }else{
+            trackId = 0;
+        }
+        loadTrack(trackId);  
+    }
+
+    const playPrevious = () => {
+        if(trackId > 0){
+            --trackId;
+        }else{
+            trackId = 0;  
+        }
+        loadTrack(trackId);   
+    }
+
+    const pad = (n, width, z) => {
+        z = z || "0";
+        n = n + "";
+        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+    };
+
+    audiotrack.addEventListener("timeupdate", fillProgressBar);
+
+    nextBtn.addEventListener("click", ()=>{
+       playNext();
+    });
+    prevBtn.addEventListener("click", ()=>{
+       playPrevious();
+    });
+    loadTrack(0)
+
+</script>
+</html>
